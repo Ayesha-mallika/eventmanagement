@@ -15,40 +15,10 @@ namespace EventManagementApp.Services
             repository = _repository;
         }
 
-        public BookDTO AddBook(BookDTO bookDTO)
+        public Event Add(Event events)
         {
-            Books check;
-            try
-            {
-                check = _booksRepository.GetAll().FirstOrDefault(u => u.Title == bookDTO.Title);
-            }
-            catch (Exception)
-            {
-                check = null;
-            }
-            if (check == null)
-            {
-                Books books = new Books()
-                {
-                    Title = bookDTO.Title,
-                    Author = bookDTO.Author,
-                    Genre = bookDTO.Genre,
-                    PublishDate = bookDTO.PublishDate,
-                    UserId = bookDTO.UserId,
-                    Price = bookDTO.Price,
-                    Image = "http://localhost:5103/Images/" + bookDTO.Image.FileName
-                };
-                var result = repository.Add(books);
-                if (result != null)
-                {
-                    return bookDTO;
-                }
-                return null;
-            }
-            else
-            {
-                throw new AlreadyAvailableException();
-            }
+            var res = repository.Add(events);
+            return res;
         }
 
         public Event Update(Event events)

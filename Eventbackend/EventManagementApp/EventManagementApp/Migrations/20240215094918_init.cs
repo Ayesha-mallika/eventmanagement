@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EventManagementApp.Migrations
 {
-    public partial class first : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,8 +21,7 @@ namespace EventManagementApp.Migrations
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     maxAttendees = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    registrationFee = table.Column<int>(type: "int", nullable: false),
-                    imageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    registrationFee = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

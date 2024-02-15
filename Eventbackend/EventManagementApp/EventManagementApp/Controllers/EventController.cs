@@ -70,44 +70,23 @@ namespace EventManagementApp.Controllers
             return BadRequest(message);
         }
         [HttpPost("AddEvent")]
-        [Authorize(Roles = "Admin")]
-        public ActionResult AddBook([FromForm] IFormCollection data)
+        //[Authorize(Roles = "Admin")]
+        public ActionResult Create(Event events)
         {
-            IFormFile file = data.Files["image"];
-
-            if (file != null && file.Length > 0)
-            {
-                string filename = file.FileName;
-                string path = Path.Combine(@".\wwwroot\Images", filename);
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-            }
-            string json = data["json"];
-            Event events = JsonConvert.DeserializeObject<Event>(json);
-           events.Image = file;
-
-            string message = string.Empty;
+            string errorMessage = string.Empty;
             try
             {
-
-
-                var book = _eventService.Add(bookDTO);
-                if (book != null)
-                {
-                    return Ok(book);
-                }
-                message = "Could not add Book";
+                var result = _eventService.Add(events);
+                return Ok(result);
             }
             catch (Exception e)
             {
-                message = e.Message;
+                errorMessage = e.Message;
             }
-            return BadRequest(message);
+            return BadRequest(errorMessage);
         }
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [Route("RemoveEvent")]
         public ActionResult RemoveEvent(int Id)
         {

@@ -18,7 +18,8 @@ namespace EventManagementApp.Models
         public int maxAttendees { get; set; }
         public DateTime Date { get; set; }
         public int registrationFee { get; set; }
-        public string imageUrl { get; set; }
+        
+      
     }
 }
 
