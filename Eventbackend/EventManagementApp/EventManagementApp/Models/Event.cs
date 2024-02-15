@@ -8,7 +8,7 @@ namespace EventManagementApp.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Can You Please Provide the Title of Your Book")]
+        [Required(ErrorMessage = "Can You Please Provide the Title of Your Event")]
         public string Title { get; set; }
         public string Description { get; set; }
         public string UserId { get; set; } = "";
@@ -16,10 +16,10 @@ namespace EventManagementApp.Models
 
         public string Location { get; set; }
         public int maxAttendees { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public int registrationFee { get; set; }
-        
-      
+        public string Image { get; set; }
+
     }
 }
 
